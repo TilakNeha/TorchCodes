@@ -30,10 +30,10 @@ require 'nn'
 require 'rnn'
 
 lm = nn.Sequential()
-lm:add(nn.LookupTable(10,30))  -- Input is index 1 to 10, output is vector of 4
+lm:add(nn.LookupTable(10,6))  -- Input is index 1 to 10, output is vector of 4
 lm:add(nn.SplitTable(1,2))
-lm:add(nn.Sequencer(nn.Recurrent(30,nn.Identity(),nn.Linear(30,30)))) -- Add recurrent layer for input
-lm:add(nn.Sequencer(nn.Linear(30,10))) -- Add activation function
+lm:add(nn.Sequencer(nn.Recurrent(6,nn.Identity(),nn.Linear(6,6)))) -- Add recurrent layer for input
+lm:add(nn.Sequencer(nn.Linear(6,10))) -- Add activation function
 lm:add(nn.Sequencer(nn.LogSoftMax())) -- Add Softmax layer in the end to determine next number.
 
 -- Loss Function
